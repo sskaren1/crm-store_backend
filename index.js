@@ -1,11 +1,13 @@
 // "Express" import
 import express from 'express';
-// routes import
-import router from './routes/index.js';
+// Environment Variables import
+import dotenv from "dotenv";
+// CORS import
+import cors from "cors";
 // DB import
 import connectDB from './config/db.js';
-import dotenv from "dotenv";
-// import cors from "cors";
+// routes import
+import clientRouter from './routes/clientRouter.js';
 
 // Crear el servidor
 const app = express();
@@ -33,7 +35,7 @@ connectDB();
 // app.use(cors(corsOptions));
 
 // Routes
-app.use("/api/", router);
+app.use("/api/clients", clientRouter);
 
 // Port
 const PORT = process.env.PORT || 4000;

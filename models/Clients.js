@@ -29,4 +29,5 @@ const clientsSchema = new Schema({
 });
 
 const Clients = mongoose.model("Clientes", clientsSchema);
+
 export default Clients;
