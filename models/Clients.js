@@ -30,4 +30,11 @@ const clientsSchema = new Schema({
 
 const Clients = mongoose.model("Clientes", clientsSchema);
 
-export default Clients;
+export const queryAllClients = async ()=>{
+    return await Clients.find({});
+}
+
+export const queryClientById  = async (req)=>{
+    return await Clients.findById(req.params.idClient);
+}
+

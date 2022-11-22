@@ -35,7 +35,7 @@ connectDB();
 // app.use(cors(corsOptions));
 
 // Routes
-app.use("/api/clients", clientRouter);
+app.use("/api/v1/clients", clientRouter);
 
 // Port
 const PORT = process.env.PORT || 4000;

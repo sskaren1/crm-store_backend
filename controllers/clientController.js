@@ -1,5 +1,5 @@
 // Client model import
-import Clients from './../models/Clients.js';
+import { queryAllClients, queryClientById } from './../models/Clients.js';
 
 // Add new customers
 export const newClient = async(req, res, next) => {
@@ -8,7 +8,7 @@ export const newClient = async(req, res, next) => {
 
     try {        
         await client.save();// Store record
-        res.json({ mensaje:'Se agrego el nuevo cliente' });
+        res.json({ message:'Se agrego el nuevo cliente' });
     } catch (error) {
         console.log(error);
         next();
@@ -18,12 +18,22 @@ export const newClient = async(req, res, next) => {
 // Get all clients
 export const getAllClients = async(req, res, next) =>{
     try {
-        const clients = await Clients.find({})
-        res.json(clients)
+        const clients = await queryAllClients();
+        res.json(clients);
     } catch (error) {
         console.log(error);
         next();
     }
 }
 
+// Show a specific client by id
+export const getClientById = async(req, res, next) => {
+    const client = await queryClientById(req);
+
+    if (!client) {
+        res.json({ message: "Ese cliente no existe" })
+    }
+
+    res.json(client); //show client
+}
 
